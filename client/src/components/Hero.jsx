@@ -56,10 +56,10 @@ const Hero = () => {
       window.particlesJS('particles-js', {
         particles: {
           number: { value: 80, density: { enable: true, value_area: 800 } },
-          color: { value: "#ffffff" },
+          color: { value: "#555" },
           shape: { type: "circle" },
           opacity: {
-            value: 0.1, random: true,
+            value: 1, random: true,
             anim: { enable: true, speed: 1, opacity_min: 0.05, sync: false }
           },
           size: {
@@ -216,7 +216,7 @@ const Hero = () => {
                       <div className="text-sm text-gray-500">po osobi</div>
                     </div>
                     <Link
-                      to={"/chat"}
+                      to={`/chat/${currentDestination?.title?.replaceAll(' ', '-')}`}
                       className="px-6 py-3 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg transform hover:scale-105"
                       style={{ backgroundColor: currentDestination.color }}
                     >

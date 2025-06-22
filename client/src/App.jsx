@@ -37,20 +37,34 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
-        <Header /> {/* Moved Header outside Routes to render on all pages */}
         <Routes>
           <Route
             path="/"
             element={
               <>
+                <Header />
                 <Hero />
                 <FeaturedDestinations />
                 <Footer />
               </>
             }
           />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/contact" element={
+            <>
+              <Header />
+              <Contact />
+              <Footer />
+            </>
+
+          } />
+          <Route path="/aboutus" element={
+            <>
+              <Header />
+              <AboutUs />
+              <Footer />
+            </>
+
+          } />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/chat/:title" element={<ChatPage />} />
           <Route path="/agency" element={<AgencyPage />} />

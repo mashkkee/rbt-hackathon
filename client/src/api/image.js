@@ -1,7 +1,7 @@
 const UNSPLASH_ACCESS_KEY = 'V5FbIIJPljAaL1s65Q6EWA92E1IpI9hwWeJX6BWh0DE'; // direktno
 
 export const getImageForCity = async (cityName) => {
-  const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(cityName)}&orientation=landscape&per_page=1`;
+  const url = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(cityName)}-city&orientation=landscape&per_page=1`;
 
   try {
     const response = await fetch(url, {

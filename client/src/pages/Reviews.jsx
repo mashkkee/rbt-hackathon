@@ -16,7 +16,6 @@ const Recenzije = () => {
       Math.floor(Math.random() * 5)
     ];
 
-  // Funkcija za generisanje nasumične ocene između 4.0 i 5.0
   const randomRating = () => (Math.random() * (5 - 4) + 4).toFixed(1);
 
   useEffect(() => {
