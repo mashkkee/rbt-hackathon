@@ -1,20 +1,17 @@
-title: "🌍 Golem Travel – Tvoj AI saputnik za savršeno putovanje"
-description: >
-  Golem Travel je napredna web aplikacija za turizam koju pokreće moćni AI asistent Golem.
-  Golem korisnicima pruža personalizovane preporuke, odgovara na pitanja i omogućava direktne rezervacije putovanja.
+# 🌍 Golem Travel – Tvoj AI saputnik za savršeno putovanje
 
-table_of_contents:
-  - 🔍 Uvod
-  - 🚀 Tehnologije
-  - 📦 Instalacija
-  - ⚙️ Konfiguracija
-  - 🧠 Kako radi Golem?
-  - 💡 Primer korišćenja
-  - 🐞 Problemi i rešavanja
-  - 
-introduction: >
-  Golem Travel je aplikacija dizajnirana za planiranje putovanja bez stresa. Golem, AI asistent, 
-  pomaže korisnicima da pronađu destinacije, istraže opcije i rezervišu svoja putovanja direktno iz aplikacije.
+**Golem Travel** je napredna web aplikacija za turizam koju pokreće moćni AI asistent Golem.  
+Golem korisnicima pruža personalizovane preporuke, odgovara na pitanja i omogućava direktne rezervacije putovanja.
+
+---
+
+## 🔍 Uvod
+
+Golem Travel je aplikacija dizajnirana za planiranje putovanja bez stresa.  
+**Golem**, AI asistent, pomaže korisnicima da pronađu destinacije, istraže opcije i rezervišu svoja putovanja direktno iz aplikacije.
+
+---
+
 
 technologies:
   - React (frontend)
@@ -25,8 +22,7 @@ technologies:
 installation:
   steps:
     - git clone https://github.com/mashkkee/rbt-hackathon.git
-    - cd golem-travel
-    - cd frontend && npm install && npm run dev
+    - cd client && npm install && npm run dev
     - cd backend && python -m venv venv
     - source venv/bin/activate
     - pip install -r requirements.txt
@@ -35,6 +31,11 @@ installation:
     - Startuj MySQL server
     - Importuj `schema.sql`
     - Konfiguriši `.env` fajl sa pristupnim podacima
+
+inverment:
+  $env:OPENAI_API_KEY="vas_azure_api_kljuc"
+  $env:DATABASE_URL="mysql://korisnik:lozinka@localhost:3306/ime_baze"
+
 
 golem_features:
   - Odgovara na pitanja o destinacijama i vasim potrebama vezane za destinacije
