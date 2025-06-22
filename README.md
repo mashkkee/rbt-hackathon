@@ -10,11 +10,8 @@ table_of_contents:
   - ⚙️ Konfiguracija
   - 🧠 Kako radi Golem?
   - 💡 Primer korišćenja
-  - 📸 Screenshotovi
   - 🐞 Problemi i rešavanja
-  - 👨‍💻 Autori
-  - 📝 Licenca
-
+  - 
 introduction: >
   Golem Travel je aplikacija dizajnirana za planiranje putovanja bez stresa. Golem, AI asistent, 
   pomaže korisnicima da pronađu destinacije, istraže opcije i rezervišu svoja putovanja direktno iz aplikacije.
@@ -23,7 +20,7 @@ technologies:
   - React (frontend)
   - Python (backend, AI integracija)
   - MySQL (baza podataka)
-  - OpenAI API / Custom NLP (za komunikaciju sa Golemom)
+  - OpenAI API 
 
 installation:
   steps:
@@ -39,17 +36,8 @@ installation:
     - Importuj `schema.sql`
     - Konfiguriši `.env` fajl sa pristupnim podacima
 
-configuration:
-  env_variables:
-    - REACT_APP_API_URL=http://localhost:5000
-    - DB_HOST=localhost
-    - DB_USER=root
-    - DB_PASSWORD=your_password
-    - DB_NAME=golem_travel
-    - AI_API_KEY=your_openai_or_custom_key
-
 golem_features:
-  - Odgovara na pitanja o destinacijama, hotelima i aktivnostima
+  - Odgovara na pitanja o destinacijama i vasim potrebama vezane za destinacije
   - Predlaže putovanja na osnovu korisničkih interesovanja
   - Vodi korisnika kroz proces rezervacije
 
@@ -59,14 +47,6 @@ usage_example: |
   3. Golem predlaže destinacije sa detaljima
   4. Klikom rezerviši termin direktno kroz interfejs
 
-
-troubleshooting:
-  - problem: Golem ne odgovara
-    solution: Proveri API ključ i backend server
-  - problem: Nema konekcije sa bazom
-    solution: Proveri `.env` fajl i MySQL server
-  - problem: React app se ne build-uje
-    solution: Pokreni `npm install` iz client foldera
 
 authors:
   - role: UI/UX dizajn
