@@ -216,7 +216,7 @@ const Hero = () => {
                       <div className="text-sm text-gray-500">po osobi</div>
                     </div>
                     <Link
-                      to={"/chat"}
+                      to={`/chat/${currentDestination?.title?.replaceAll(' ', '-')}`}
                       className="px-6 py-3 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg transform hover:scale-105"
                       style={{ backgroundColor: currentDestination.color }}
                     >
