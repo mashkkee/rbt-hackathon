@@ -28,7 +28,7 @@ installation:
     - pip install -r requirements.txt
     - python main.py
   database:
-    - Startuj MySQL server
+    - Startuj PostgreSQL server
     - Importuj `schema.sql`
     - Konfiguriši `.env` fajl sa pristupnim podacima
 

@@ -1,0 +1,78 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.env/
+.venv/
+venv/
+ENV/
+env.bak/
+env/
+
+# Python environment files
+*.egg-info/
+dist/
+build/
+
+# Environment variables
+.env
+*.env
+
+# Flask & Gunicorn
+instance/
+*.log
+
+# PyInstaller
+*.manifest
+*.spec
+
+# VS Code settings
+.vscode/
+
+# macOS
+.DS_Store
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Database or cache
+*.sqlite3
+*.db
+
+# PDF/docx temp files
+~$*.docx
+
+# Chroma vectorstore data
+chroma/
+chroma_db/
+db/         # If using Chroma.persist_directory="db"
+*.parquet   # Chroma stores vectors in parquet format
+
+# Postgres dumps or temp files
+*.sql
+*.dump
+
+# Gunicorn PID files
+*.pid
+
+# Pip dependency resolver files
+pip-log.txt
+pip-delete-this-directory.txt
+
+# MyPy, Pyright, and Pylint
+.mypy_cache/
+.pyright/
+.pylint.d/
+
+# Coverage reports
+.coverage
+htmlcov/
+coverage.xml
+.cache
+
+# Unit test / pytest
+.pytest_cache/
+test-results/
+nosetests.xml
