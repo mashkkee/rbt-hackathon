@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { MessageCircle, Send, X, User, Bot, Paperclip } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
+import parse from 'html-react-parser';
 import { apiRequest, API_CONFIG } from "../config/api";
 import { v4 as uuidv4 } from "uuid";
 const ChatPage = () => {
@@ -117,9 +118,8 @@ const ChatPage = () => {
     const body = `Zdravo,%0A%0AŽeleo bih da saznam više o ${params?.title?.replaceAll(
       "-",
       " "
-    )|| "putovanju"} koje ste naveli.%0AMožete li mi poslati više informacija?%0A%0AHvala unapred!%0A${
-      userData.fullName
-    }`;
+    ) || "putovanju"} koje ste naveli.%0AMožete li mi poslati više informacija?%0A%0AHvala unapred!%0A${userData.fullName
+      }`;
 
     window.location.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${agencyEmail}&su=${encodeURIComponent(
       subject
@@ -157,9 +157,8 @@ const ChatPage = () => {
           {messages.map((message) => (
             <div
               key={message.id}
-              className={`flex items-start space-x-3 ${
-                message.role === "user" ? "justify-end" : ""
-              }`}
+              className={`flex items-start space-x-3 ${message.role === "user" ? "justify-end" : ""
+                }`}
             >
               {message.role === "assistant" && (
                 <div className="w-8 h-8 bg-gradient-to-r from-tourism-primary to-tourism-secondary rounded-full flex items-center justify-center flex-shrink-0">
@@ -168,25 +167,21 @@ const ChatPage = () => {
               )}
 
               <div
-                className={`rounded-2xl p-4 shadow-sm border max-w-md ${
-                  message.role === "user"
+                className={`rounded-2xl p-4 shadow-sm border max-w-md ${message.role === "user"
                     ? "bg-gradient-to-r from-tourism-primary to-tourism-secondary text-white rounded-tr-md"
                     : "bg-white border-gray-100 rounded-tl-md"
-                }`}
+                  }`}
               >
-                <p
-                  className={
-                    message.role === "user" ? "text-white" : "text-gray-800"
-                  }
-                >
-                  {message.content}
-                </p>
+                <div className={message.role === "user" ? "text-white" : "text-gray-800"}>
+                  {parse(message.content)}
+                </div>
+
 
                 {message.canReserve && (
                   <button
                     onClick={() => {
                       setShowUserModal(true);
-                      setAgencyEmail(message.email );
+                      setAgencyEmail(message.email);
                     }}
                     className="mt-3 w-[150px] bg-gradient-to-r from-tourism-primary to-tourism-secondary text-white py-2 rounded-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center space-x-1 group"
                   >
