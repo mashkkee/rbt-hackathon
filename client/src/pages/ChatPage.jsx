@@ -168,8 +168,8 @@ const ChatPage = () => {
 
               <div
                 className={`rounded-2xl p-4 shadow-sm border max-w-md ${message.role === "user"
-                    ? "bg-gradient-to-r from-tourism-primary to-tourism-secondary text-white rounded-tr-md"
-                    : "bg-white border-gray-100 rounded-tl-md"
+                  ? "bg-gradient-to-r from-tourism-primary to-tourism-secondary text-white rounded-tr-md"
+                  : "bg-white border-gray-100 rounded-tl-md"
                   }`}
               >
                 <div className={message.role === "user" ? "text-white" : "text-gray-800"}>
@@ -222,7 +222,12 @@ const ChatPage = () => {
               <input
                 type="text"
                 value={inputMessage}
-                onChange={(e) => setInputMessage(e.target.value)}
+                onChange={(e) => {
+                  const words = e.target.value.trim().split(/\s+/);
+                  if (words.length <= 100) {
+                    setInputMessage(e.target.value);
+                  }
+                }}
                 onKeyPress={handleKeyPress}
                 placeholder="Napišite vašu poruku..."
                 className="w-full px-4 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-tourism-primary focus:border-transparent resize-none"
