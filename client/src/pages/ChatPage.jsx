@@ -72,12 +72,12 @@ const ChatPage = () => {
       const botMessage = {
         id: Date.now() + 1,
         role: "assistant",
-        content: JSON.parse(response.answer).content,
+        content: response.response.content,
         timestamp: response.timestamp,
         sources: response.sources || [],
         responseTime: response.response_time,
-        canReserve: JSON.parse(response.answer).reserve,
-        email: JSON.parse(response.answer).email,
+        canReserve: response.response.reserve,
+        email: response.response.gmail,
       };
 
       setMessages((prev) => [...prev, botMessage]);
@@ -113,8 +113,8 @@ const ChatPage = () => {
 
     setUserInfo(userData);
     setShowUserModal(false);
-    const subject = `Upit za ${params.title.replaceAll("-", " ") || "putovanje"}`;
-    const body = `Zdravo,%0A%0AŽeleo bih da saznam više o ${params.title.replaceAll(
+    const subject = `Upit za ${params?.title?.replaceAll("-", " ") || "putovanje"}`;
+    const body = `Zdravo,%0A%0AŽeleo bih da saznam više o ${params?.title?.replaceAll(
       "-",
       " "
     )|| "putovanju"} koje ste naveli.%0AMožete li mi poslati više informacija?%0A%0AHvala unapred!%0A${

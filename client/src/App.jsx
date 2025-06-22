@@ -81,7 +81,11 @@ function App() {
           />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/chat/:title" element={<ChatPage />} />
-          <Route path="/agency" element={<AgencyPage />} />
+          <Route path="/agency" element={
+           <>
+            <AgencyPage />
+           </>
+           } />
         </Routes>
       </div>
     </Router>
