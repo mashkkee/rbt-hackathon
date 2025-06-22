@@ -1,19 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { MessageCircle, Send, X, User, Bot, Paperclip } from 'lucide-react';
-import { Link, useParams } from 'react-router-dom';
-import { apiRequest, API_CONFIG } from '../config/api';
-import { v4 as uuidv4 } from 'uuid'
+import React, { useState, useEffect, useRef } from "react";
+import { MessageCircle, Send, X, User, Bot, Paperclip } from "lucide-react";
+import { Link, useParams } from "react-router-dom";
+import { apiRequest, API_CONFIG } from "../config/api";
+import { v4 as uuidv4 } from "uuid";
 const ChatPage = () => {
   const params = useParams();
 
   const [messages, setMessages] = useState([]);
-  const [inputMessage, setInputMessage] = useState(params.title ? `Reci mi nesto vise o ${params.title.replaceAll('-', ' ')}` : '');
+  const [inputMessage, setInputMessage] = useState(
+    params.title
+      ? `Reci mi nesto vise o ${params.title.replaceAll("-", " ")}`
+      : ""
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
   const [showUserModal, setShowUserModal] = useState(false);
   const messagesEndRef = useRef(null);
-  const [agencyEmail, setAgencyEmail] = useState('');
+  const [agencyEmail, setAgencyEmail] = useState("");
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -21,7 +25,6 @@ const ChatPage = () => {
 
   useEffect(() => {
     scrollToBottom();
-
   }, [messages]);
 
   useEffect(() => {
@@ -29,12 +32,15 @@ const ChatPage = () => {
     if (params.title) {
       handleSendMessage();
     } else {
-      setMessages([{
-        id: 1,
-        role: 'assistant',
-        content: 'Zdravo! Ja sam Golem, vaš AI turistički asistent. Kako mogu da vam pomognem da pronađete savršeno putovanje? 🌍✈️',
-        timestamp: new Date().toISOString()
-      }]);
+      setMessages([
+        {
+          id: 1,
+          role: "assistant",
+          content:
+            "Zdravo! Ja sam Golem, vaš AI turistički asistent. Kako mogu da vam pomognem da pronađete savršeno putovanje? 🌍✈️",
+          timestamp: new Date().toISOString(),
+        },
+      ]);
     }
     const newSessionId = uuidv4();
     setSessionId(newSessionId);
@@ -45,54 +51,53 @@ const ChatPage = () => {
 
     const userMessage = {
       id: Date.now(),
-      role: 'user',
+      role: "user",
       content: inputMessage,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
-    setMessages(prev => [...prev, userMessage]);
-    setInputMessage('');
+    setMessages((prev) => [...prev, userMessage]);
+    setInputMessage("");
     setIsLoading(true);
 
     try {
       const response = await apiRequest(API_CONFIG.ENDPOINTS.CHAT, {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify({
           message: inputMessage,
-          session_id: sessionId
-        })
+          session_id: sessionId,
+        }),
       });
 
       const botMessage = {
         id: Date.now() + 1,
-        role: 'assistant',
+        role: "assistant",
         content: JSON.parse(response.answer).content,
         timestamp: response.timestamp,
         sources: response.sources || [],
         responseTime: response.response_time,
         canReserve: JSON.parse(response.answer).reserve,
-        email: JSON.parse(response.answer).email
+        email: JSON.parse(response.answer).email,
       };
 
-      setMessages(prev => [...prev, botMessage]);
+      setMessages((prev) => [...prev, botMessage]);
       setSessionId(response.session_id);
-
     } catch (error) {
-      console.error('Chat error:', error);
+      console.error("Chat error:", error);
       const errorMessage = {
         id: Date.now() + 1,
-        role: 'assistant',
-        content: 'Izvinjavam se, došlo je do greške. Molimo pokušajte ponovo.',
-        timestamp: new Date().toISOString()
+        role: "assistant",
+        content: "Izvinjavam se, došlo je do greške. Molimo pokušajte ponovo.",
+        timestamp: new Date().toISOString(),
       };
-      setMessages(prev => [...prev, errorMessage]);
+      setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
     }
@@ -102,19 +107,24 @@ const ChatPage = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const userData = {
-      fullName: formData.get('fullName'),
-      email: formData.get('email')
+      fullName: formData.get("fullName"),
+      email: formData.get("email"),
     };
 
     setUserInfo(userData);
     setShowUserModal(false);
-    const subject = `Upit za ${params.title.replaceAll('-', ' ')}`;
-    const body = `Zdravo,%0A%0AŽeleo bih da saznam više o ${params.title.replaceAll('-', ' ')} koje ste naveli.%0AMožete li mi poslati više informacija?%0A%0AHvala unapred!%0A${userData.fullName}`;
+    const subject = `Upit za ${params.title.replaceAll("-", " ")}`;
+    const body = `Zdravo,%0A%0AŽeleo bih da saznam više o ${params.title.replaceAll(
+      "-",
+      " "
+    )} koje ste naveli.%0AMožete li mi poslati više informacija?%0A%0AHvala unapred!%0A${
+      userData.fullName
+    }`;
 
-    window.location.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${agencyEmail}&su=${encodeURIComponent(subject)}&body=${body}`;
-
+    window.location.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${agencyEmail}&su=${encodeURIComponent(
+      subject
+    )}&body=${body}`;
   };
-
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
@@ -128,10 +138,15 @@ const ChatPage = () => {
               </div>
               <div>
                 <h1 className="text-xl font-bold text-gray-800">Golem AI</h1>
-                <p className="text-sm text-gray-600">Vaš Lični Turistički Asistent</p>
+                <p className="text-sm text-gray-600">
+                  Vaš Lični Turistički Asistent
+                </p>
               </div>
             </div>
-            <Link to="/" className="text-tourism-primary hover:text-tourism-secondary transition-colors">
+            <Link
+              to="/"
+              className="text-tourism-primary hover:text-tourism-secondary transition-colors"
+            >
               <X className="w-6 h-6" />
             </Link>
           </div>
@@ -142,34 +157,46 @@ const ChatPage = () => {
           {messages.map((message) => (
             <div
               key={message.id}
-              className={`flex items-start space-x-3 ${message.role === 'user' ? 'justify-end' : ''
-                }`}
+              className={`flex items-start space-x-3 ${
+                message.role === "user" ? "justify-end" : ""
+              }`}
             >
-              {message.role === 'assistant' && (
+              {message.role === "assistant" && (
                 <div className="w-8 h-8 bg-gradient-to-r from-tourism-primary to-tourism-secondary rounded-full flex items-center justify-center flex-shrink-0">
                   <Bot className="w-4 h-4 text-white" />
                 </div>
               )}
 
               <div
-                className={`rounded-2xl p-4 shadow-sm border max-w-md ${message.role === 'user'
-                  ? 'bg-gradient-to-r from-tourism-primary to-tourism-secondary text-white rounded-tr-md'
-                  : 'bg-white border-gray-100 rounded-tl-md'
-                  }`}
+                className={`rounded-2xl p-4 shadow-sm border max-w-md ${
+                  message.role === "user"
+                    ? "bg-gradient-to-r from-tourism-primary to-tourism-secondary text-white rounded-tr-md"
+                    : "bg-white border-gray-100 rounded-tl-md"
+                }`}
               >
-                <p className={message.role === 'user' ? 'text-white' : 'text-gray-800'}>
+                <p
+                  className={
+                    message.role === "user" ? "text-white" : "text-gray-800"
+                  }
+                >
                   {message.content}
                 </p>
 
                 {message.canReserve && (
-                  <button onClick={() => { setShowUserModal(true); setAgencyEmail(message.email) }} className="mt-3 w-[150px] bg-gradient-to-r from-tourism-primary to-tourism-secondary text-white py-2 rounded-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center space-x-1 group">
+                  <button
+                    onClick={() => {
+                      setShowUserModal(true);
+                      setAgencyEmail(message.email);
+                    }}
+                    className="mt-3 w-[150px] bg-gradient-to-r from-tourism-primary to-tourism-secondary text-white py-2 rounded-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center space-x-1 group"
+                  >
                     <span>Rezervisi</span>
                     <Paperclip className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
                 )}
               </div>
 
-              {message.role === 'user' && (
+              {message.role === "user" && (
                 <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
                   <User className="w-4 h-4 text-gray-600" />
                 </div>
@@ -183,7 +210,9 @@ const ChatPage = () => {
                 <Bot className="w-4 h-4 text-white" />
               </div>
               <div className="bg-white rounded-2xl rounded-tl-md p-4 shadow-sm border border-gray-100 max-w-md">
-                <p className="text-gray-800 animate-pulse">Golem razmišlja...</p>
+                <p className="text-gray-800 animate-pulse">
+                  Golem razmišlja...
+                </p>
               </div>
             </div>
           )}
@@ -220,11 +249,17 @@ const ChatPage = () => {
       {showUserModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl p-6 w-full max-w-md animate-fade-in">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Informacije o korisniku</h2>
-            <p className="text-gray-600 mb-6">Molimo vas da unesete vaše podatke pre rezervacije:</p>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              Informacije o korisniku
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Molimo vas da unesete vaše podatke pre rezervacije:
+            </p>
             <form onSubmit={handleUserInfoSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Ime i prezime</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Ime i prezime
+                </label>
                 <input
                   type="text"
                   name="fullName"
@@ -233,7 +268,9 @@ const ChatPage = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Email adresa</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Email adresa
+                </label>
                 <input
                   type="email"
                   name="email"
