@@ -76,9 +76,11 @@ const FeaturedDestinations = () => {
                   <Star className="w-4 h-4 text-yellow-400 fill-current" />
                   <span className="text-sm font-semibold">{destination.rating}</span>
                 </div>
-                <div className="absolute bottom-4 left-4 bg-gradient-to-r from-tourism-primary to-tourism-secondary text-white px-3 py-1 rounded-full text-sm font-semibold">
-                  {destination.price}
-                </div>
+                {
+                  destination.price == "Cena na upit" ? "" : <div className="absolute bottom-4 left-4 bg-gradient-to-r from-tourism-primary to-tourism-secondary text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    {destination.price}
+                  </div>
+                }
               </div>
 
               <div className="p-6">
