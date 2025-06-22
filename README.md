@@ -16,7 +16,7 @@ Golemov Put je aplikacija dizajnirana za planiranje putovanja bez stresa.
 technologies:
   - React (frontend)
   - Python (backend, AI integracija)
-  - MySQL (baza podataka)
+  - postgreSQL (baza podataka)
   - OpenAI API 
 
 installation:
@@ -27,11 +27,15 @@ installation:
     - source venv/bin/activate
     - pip install -r requirements.txt
     - python main.py
-  
+  database:
+    - Startuj postgreSQL server
+    - Importuj `schema.sql`
+    - Konfiguriši `.env` fajl sa pristupnim podacima
+
 inverment:
   $env:OPENAI_API_KEY="vas_azure_api_kljuc"
-  $env:DATABASE_URL="mysql://korisnik:lozinka@localhost:3306/ime_baze"
-
+  $env:DATABASE_URL="postgreSQL://korisnik:lozinka@localhost:3306/ime_baze"
+  Promeni BASE_URL u client/src/config/api.js sa svojom server adresom
 
 golem_features:
   - Odgovara na pitanja o destinacijama i vasim potrebama vezane za destinacije
