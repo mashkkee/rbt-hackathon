@@ -113,11 +113,11 @@ const ChatPage = () => {
 
     setUserInfo(userData);
     setShowUserModal(false);
-    const subject = `Upit za ${params.title.replaceAll("-", " ")}`;
+    const subject = `Upit za ${params.title.replaceAll("-", " ") || "putovanje"}`;
     const body = `Zdravo,%0A%0AŽeleo bih da saznam više o ${params.title.replaceAll(
       "-",
       " "
-    )} koje ste naveli.%0AMožete li mi poslati više informacija?%0A%0AHvala unapred!%0A${
+    )|| "putovanju"} koje ste naveli.%0AMožete li mi poslati više informacija?%0A%0AHvala unapred!%0A${
       userData.fullName
     }`;
 
@@ -186,7 +186,7 @@ const ChatPage = () => {
                   <button
                     onClick={() => {
                       setShowUserModal(true);
-                      setAgencyEmail(message.email);
+                      setAgencyEmail(message.email );
                     }}
                     className="mt-3 w-[150px] bg-gradient-to-r from-tourism-primary to-tourism-secondary text-white py-2 rounded-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center space-x-1 group"
                   >
