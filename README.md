@@ -35,7 +35,7 @@ installation:
 inverment:
   $env:OPENAI_API_KEY="vas_azure_api_kljuc"
   $env:DATABASE_URL="postgreSQL://korisnik:lozinka@localhost:3306/ime_baze"
-
+  Promeni BASE_URL u client/src/config/api.js sa svojom server adresom
 
 golem_features:
   - Odgovara na pitanja o destinacijama i vasim potrebama vezane za destinacije
