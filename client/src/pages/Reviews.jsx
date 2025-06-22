@@ -37,9 +37,8 @@ const Recenzije = () => {
     const loadReviews = async () => {
       try {
         const data = await apiRequest(API_CONFIG.ENDPOINTS.TRAVEL_PACKAGES);
-        const shuffled = data.packages
-          .sort(() => 0.5 - Math.random())
-          .slice(0, 5);
+        // Uklanjamo slice(0, 5) da bismo uzeli sve pakete
+        const shuffled = data.packages.sort(() => 0.5 - Math.random());
 
         const withImages = await Promise.all(
           shuffled.map(async (pkg) => {
@@ -54,7 +53,7 @@ const Recenzije = () => {
               image:
                 image || "https://via.placeholder.com/1920x1080?text=Recenzija",
               color: randomColor(),
-              averageRating: getAverageRating(pkg.id), // Dodajemo prosečnu ocenu
+              averageRating: getAverageRating(pkg.id),
             };
           })
         );
