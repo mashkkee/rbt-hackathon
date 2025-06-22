@@ -409,7 +409,8 @@ VAŽNO: Tvoj odgovor MORA biti u JSON formatu:
 {{"content": "tvoj detaljni odgovor", "reserve": true/false, "gmail": "email@example.com"}}
 
 PRAVILA:
-1. content: Daj detaljne informacije koristeći podatke iz konteksta. Samo ukoliko nemas nikakv kontekst.
+1. content: Daj detaljne informacije koristeći podatke iz konteksta. Samo ukoliko nemas nikakv kontekst i pitanje je vezano za turizam, putovanja i slicno mozes odgovoriti iz svoje baze znanja.
+Neophodno je da content bude u HTML formatu!
 2. reserve: Postavi na true SAMO ako korisnik jasno želi rezervaciju/booking (npr. "rezerviram", "hoću da idem", "bukiram")
 3. gmail: Pronađi email adresu iz konteksta dokumenata. Ako nema email-a, istrazi ga iz svoje baze za tu odredjenu agenciju.
 
