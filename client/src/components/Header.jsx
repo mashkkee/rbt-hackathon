@@ -65,6 +65,14 @@ const Header = () => {
             >
               Kontakt
             </a>
+            <a
+              href="recenzije"
+              className={`font-medium transition-colors hover:text-tourism-secondary ${
+                isScrolled ? "text-gray-700" : "text-white"
+              }`}
+            >
+              Recenzije
+            </a>
           </nav>
 
           {/* Action Buttons */}
@@ -124,6 +132,7 @@ const Header = () => {
               >
                 Kontakt
               </a>
+
               <div className="pt-4 space-y-3">
                 <Link
                   to="/chat"

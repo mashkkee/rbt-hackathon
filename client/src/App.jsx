@@ -10,7 +10,7 @@ import AgencyPage from "./pages/AgencyPage";
 import Contact from "./pages/Contact";
 import AboutUs from "./pages/AboutUs";
 import "./index.css";
-
+import Reviews from "./pages/Reviews";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -49,22 +49,36 @@ function App() {
               </>
             }
           />
-          <Route path="/contact" element={
-            <>
-              <Header />
-              <Contact />
-              <Footer />
-            </>
-
-          } />
-          <Route path="/aboutus" element={
-            <>
-              <Header />
-              <AboutUs />
-              <Footer />
-            </>
-
-          } />
+          <Route
+            path="/contact"
+            element={
+              <>
+                <Header />
+                <Contact />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/aboutus"
+            element={
+              <>
+                <Header />
+                <AboutUs />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/recenzije"
+            element={
+              <>
+                <Header />
+                <Reviews />
+                <Footer />
+              </>
+            }
+          />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/chat/:title" element={<ChatPage />} />
           <Route path="/agency" element={<AgencyPage />} />
