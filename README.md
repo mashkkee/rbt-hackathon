@@ -1,3 +1,9 @@
+> **🇬🇧 In English:** *Golemov Put* is an AI travel-planning web app built at the RBT hackathon (June 2025).
+> Travel agencies upload PDF/DOCX price lists. The Flask backend pulls out structured trip data into PostgreSQL
+> and indexes the text in a ChromaDB vector store. Users then chat with **Golem**, a LangChain + OpenAI RAG
+> assistant that recommends trips within their budget and starts a booking when the user asks.
+> **My part:** the React frontend and part of the AI/backend work.
+
 # 🌍 Golemov Put – Tvoj AI saputnik za savršeno putovanje
 
 **Golemov Put** je napredna web aplikacija za turizam koju pokreće moćni AI asistent Golem.  
@@ -32,7 +38,7 @@ installation:
     - Importuj `schema.sql`
     - Konfiguriši `.env` fajl sa pristupnim podacima
 
-inverment:
+environment:
   $env:OPENAI_API_KEY="vas_azure_api_kljuc"
   $env:DATABASE_URL="postgreSQL://korisnik:lozinka@localhost:3306/ime_baze"
   Promeni BASE_URL u client/src/config/api.js sa svojom server adresom
